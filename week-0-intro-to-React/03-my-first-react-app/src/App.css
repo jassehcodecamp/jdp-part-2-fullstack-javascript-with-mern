@@ -1,0 +1,15 @@
+.App {
+  display: flex;
+  flex-direction: column; 
+  min-height: 100vh;
+}
+
+button {
+  border: none;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
+button + button {
+  margin-left: 10px;
+}
