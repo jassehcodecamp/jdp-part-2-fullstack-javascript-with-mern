@@ -1,19 +1,38 @@
+import { Fragment } from 'react';
 import './App.css';
+import Input from './Input.js';
+import Label from './Label';
+import Button from './Button';
 
 function App() {
   return (
-    <div>
-    <main>
-      <h1>Login Form</h1>
-      <form action="">
-        {/* Put your Form Components Here */}
-      </form>
-    </main>
-    <footer>
-    <p>&copy; The Junior Developer Program 2022 - Part 2 Fullstack JavaScript With MERN.</p>
-    <p><small>All rights reserved. JassehCodeCamp</small></p>
-  </footer>
-  </div>
+    <Fragment>
+      <main>
+        <h1>Login Form</h1>
+        <form action="">
+          <div className="form-group">
+            <Label id="email" text="Email Address" className="text-primary" />
+            <Input id="email" type="email" placeholder="user@email.com" />
+          </div>
+          <div className="form-group">
+            <Label id="password" text="Password" className="text-danger" />
+            <Input id="password" type="password"   />
+          </div>
+          <div className='form-group'>
+            <Label>
+              <Input type="checkbox" /> Remember Me
+            </Label>
+          </div>
+          <div>
+            <Button text="Sign In" />
+          </div>
+        </form>
+      </main>
+      <footer>
+      <p>&copy; The Junior Developer Program 2022 - Part 2 Fullstack JavaScript With MERN.</p>
+      <p><small>All rights reserved. JassehCodeCamp</small></p>
+      </footer>
+    </Fragment>
   );
 }
 
