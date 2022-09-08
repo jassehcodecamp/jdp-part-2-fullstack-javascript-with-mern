@@ -11,11 +11,11 @@ function App() {
         <h1>Login Form</h1>
         <form action="">
           <div className="form-group">
-            <Label id="email" text="Email Address" className="text-primary" />
+            <Label id="email" text="Email Address" />
             <Input id="email" type="email" placeholder="user@email.com" />
           </div>
           <div className="form-group">
-            <Label id="password" text="Password" className="text-danger" />
+            <Label id="password" text="Password" />
             <Input id="password" type="password"   />
           </div>
           <div className='form-group'>
