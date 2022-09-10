@@ -1,0 +1,27 @@
+.App {
+  display: flex;
+  flex-direction: column; 
+  min-height: 100vh;
+  padding: 20px;
+}
+
+button {
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px 12px;
+}
+
+button + button {
+  margin-left: 10px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid gray;
+  padding: 10px 15px;
+}
