@@ -11,15 +11,6 @@ function App() {
 
   useEffect(function () {
     fetchAdvice()
-    /* fetch("https://api.adviceslip.com/advice")
-      .then(function (response) {
-        return response.json() // JavaScript Object Notation
-      })
-      .then(function (advice) {
-        console.log("advice", advice)
-        setAdviceData(advice.slip)
-        setIsLoading(false)
-      }) */
   }, [])
 
   function fetchAdvice() {

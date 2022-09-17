@@ -1,5 +1,16 @@
 import React from "react"
-import "./App.css"
+import "./AppExample.css"
+
+const colors = [
+  "tomato",
+  "deeppink",
+  "dodgerblue",
+  "darkblue",
+  "gold",
+  "red",
+  "blue",
+  "green",
+]
 
 function App() {
   const [count, setCount] = React.useState(0)
@@ -7,9 +18,12 @@ function App() {
 
   React.useEffect(
     function () {
+      const randomIndex = Math.floor(Math.random() * colors.length)
       const h1Element = document.querySelector("h1")
-      h1Element.style.color = "darkblue"
-      console.log("h1", h1Element)
+      const color = colors[randomIndex]
+      h1Element.style.color = color
+
+      console.log("h1", color)
     },
     [double]
   )
