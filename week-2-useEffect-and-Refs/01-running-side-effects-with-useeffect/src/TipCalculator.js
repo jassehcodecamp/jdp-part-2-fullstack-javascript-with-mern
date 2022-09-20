@@ -7,6 +7,7 @@ function App() {
   const [bill, setBill] = useState("")
   const [tipPercent, setTipPercent] = useState(0)
   const [numberOfPeople, setNumberOfPeople] = useState("")
+  const [isCustomTip, setIsCustomTip] = useState(false)
 
   let tipAmount = 0
   let tipAmountPerPerson = 0
@@ -23,6 +24,7 @@ function App() {
     totalPerPerson = (Number(bill) + tipAmount) / numberOfPeople
   }
   const setTipPercentHandler = (event) => {
+    setIsCustomTip(false)
     setTipPercent(Number(event.target.value))
   }
 
@@ -96,16 +98,29 @@ function App() {
                   >
                     50%
                   </button>
-                  <button type="button" name="custom" className="custom">
-                    Custom
-                  </button>
-                  {/* <input
-                    type="text"
-                    name="custom-tip"
-                    className="custom-tip"
-                    placeholder="0"
-                    autoComplete="off"
-                  /> */}
+                  {!isCustomTip ? (
+                    <button
+                      type="button"
+                      name="custom"
+                      className="custom"
+                      onClick={() => {
+                        setTipPercent("")
+                        setIsCustomTip(true)
+                      }}
+                    >
+                      Custom
+                    </button>
+                  ) : (
+                    <input
+                      value={tipPercent}
+                      onChange={(e) => setTipPercent(e.target.value)}
+                      type="text"
+                      name="custom-tip"
+                      className="custom-tip"
+                      placeholder="0"
+                      autoComplete="off"
+                    />
+                  )}
                 </div>
               </div>
               <div className="form-group">
