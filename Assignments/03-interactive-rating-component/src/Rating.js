@@ -31,6 +31,8 @@ function Rating({ rating, setRating, setStatus }) {
 
       <div className="submit-button-wrapper">
         <Button
+          disabled={!rating}
+          style={{ cursor: !rating ? "not-allowed" : "pointer" }}
           className="submit"
           onClick={() => setStatus("submitted")}
           children="Submit"
