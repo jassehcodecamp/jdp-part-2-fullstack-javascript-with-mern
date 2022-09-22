@@ -5,10 +5,6 @@ import starIcon from "./images/icon-star.svg"
 const BUTTONS = [1, 2, 3, 4, 5]
 
 function Rating({ rating, setRating, setStatus }) {
-  const handleSetRating = (event) => {
-    setRating(Number(event.target.innerText))
-  }
-
   return (
     <div className="rating-container">
       <div className="star-icon-wrapper">
@@ -26,7 +22,7 @@ function Rating({ rating, setRating, setStatus }) {
         {BUTTONS.map((button) => (
           <Button
             key={button}
-            onClick={handleSetRating}
+            onClick={(event) => setRating(Number(event.target.innerText))}
             className={rating === button ? "active" : ""}
             children={button}
           />
