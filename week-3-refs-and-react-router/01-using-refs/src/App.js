@@ -31,7 +31,9 @@ function App() {
 
   return (
     <div>
-      <h1 ref={heading1}>React Refs with useRef</h1>
+      <h1 ref={heading1} style={{ color: "white", marginBottom: "50px" }}>
+        React Refs with useRef
+      </h1>
 
       <div id="popcorn" aria-describedby="tooltip" ref={popcorn}></div>
       <div id="tooltip" role="tooltip" ref={tooltip}>
