@@ -1,18 +1,73 @@
 import React, { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 import "./App.css"
 
 function App() {
+  const [countryName, setCountryName] = useState("")
+  const [region, setRegion] = useState("")
   const [countries, setCountries] = useState([])
+  const [filteredCountries, setFilteredCountries] = useState([])
+
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all")
       .then((response) => {
         return response.json()
       })
       .then((data) => {
-        // console.log("countries data", Array.isArray(data))
         setCountries(data)
+        setFilteredCountries(data)
       })
   }, [])
+
+  function handleChangeCountryName(event) {
+    setCountryName(event.target.value)
+    filterCountries(event.target.value)
+  }
+
+  function handleChangeRegion(event) {
+    setRegion(event.target.value)
+    filterCountriesByRegion(event.target.value)
+  }
+
+  function filterCountries(name) {
+    let filtered = countries
+      .filter((country) => {
+        return country.name.common.toLowerCase().includes(name.toLowerCase())
+      })
+      .filter((country) => {
+        return country.region.toLowerCase().includes(region.toLowerCase())
+      })
+
+    setFilteredCountries(filtered)
+  }
+
+  function filterCountriesByRegion(region) {
+    let filtered = countries
+      .filter((country) => {
+        return country.region.toLowerCase().includes(region.toLowerCase())
+      })
+      .filter((country) => {
+        return country.name.common
+          .toLowerCase()
+          .includes(countryName.toLowerCase())
+      })
+
+    setFilteredCountries(filtered)
+    /* if (!region) {
+      region = "all"
+    } else {
+      region = "region/" + region
+    }
+    fetch("https://restcountries.com/v3.1/" + region)
+      .then((response) => {
+        return response.json()
+      })
+      .then((data) => {
+        setCountries(data)
+        setFilteredCountries(data)
+      }) */
+  }
+
   return (
     <>
       <header>
@@ -28,11 +83,21 @@ function App() {
         <div className="filters">
           <form action="">
             <div>
-              <input type="text" placeholder="Search for a country" />
+              <input
+                value={countryName}
+                type="text"
+                placeholder="Search for a country"
+                onChange={handleChangeCountryName}
+              />
             </div>
 
             <div>
-              <select name="region" id="region">
+              <select
+                name="region"
+                value={region}
+                id="region"
+                onChange={handleChangeRegion}
+              >
                 <option value="">Filter by Region</option>
                 <option value="africa">Africa</option>
                 <option value="america">America</option>
@@ -45,15 +110,17 @@ function App() {
         </div>
 
         <div className="countries">
-          {countries.map((country) => {
+          {filteredCountries.map((country) => {
             return (
               <div className="country-card" key={country.name.common}>
                 <div className="card-header">
-                  <img
-                    className="flag"
-                    src={country.flags.png}
-                    alt="The Gambia Flag"
-                  />
+                  <Link to={`/countries/${country.name.common}`}>
+                    <img
+                      className="flag"
+                      src={country.flags.png}
+                      alt="The Gambia Flag"
+                    />
+                  </Link>
                 </div>
                 <div className="card-body">
                   <h2>{country.name.common}</h2>
