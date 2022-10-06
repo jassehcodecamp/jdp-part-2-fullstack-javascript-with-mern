@@ -28,3 +28,6 @@
 
 # vscode settings
 **/.vscode
+
+# zip files
+**.zip
