@@ -18,9 +18,9 @@ function App() {
       <main>
         <Outlet />
       </main>
-      <footer>
+      {/* <footer>
         <p>This is our footer</p>
-      </footer>
+      </footer> */}
     </>
   )
 }

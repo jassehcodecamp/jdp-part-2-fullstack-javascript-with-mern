@@ -1,6 +1,12 @@
 import React from "react"
-import { useLoaderData } from "react-router-dom"
+import { useLoaderData, Link, useNavigate } from "react-router-dom"
 import "./../App.css"
+// import countries from "../data/countries"
+
+import countries from "../data/countries.json"
+import BackButton from "../Components/BackButton"
+
+// console.log("countries json", countriesJson)
 
 export async function loader({ params }) {
   const response = await fetch(
@@ -17,7 +23,7 @@ function Country() {
   return (
     <div className="country-details-container">
       <div>
-        <button> Back </button>
+        <BackButton />
       </div>
 
       <div className="country-details-wrapper">
@@ -60,7 +66,7 @@ function Country() {
                 Currencies:{" "}
                 <span>
                   {Object.values(country.currencies).map((currency) => (
-                    <span>{currency.name}</span>
+                    <span key={currency.name}>{currency.name}</span>
                   ))}
                 </span>
               </li>
@@ -86,9 +92,20 @@ function Country() {
               <li>
                 <span>Border Countries: </span>
                 <div className="country-borders">
-                  <span className="badge">France</span>{" "}
-                  <span className="badge">France</span>{" "}
-                  <span className="badge">France</span>
+                  {country.borders?.map((border) => {
+                    const countryName = countries.find(
+                      (country) => country.cca3 === border
+                    ).name.common
+                    return (
+                      <Link
+                        to={`/countries/${countryName}`}
+                        className="badge"
+                        key={border}
+                      >
+                        {countryName}
+                      </Link>
+                    )
+                  }) || <span> No Borders</span>}
                 </div>
               </li>
             </ul>
