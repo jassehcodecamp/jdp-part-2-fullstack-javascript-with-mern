@@ -1,31 +1,19 @@
 import React, { useState } from "react"
 import { Link, useLoaderData } from "react-router-dom"
+import SearchIcon from "../Components/SearchIcon"
 
 export async function loader() {
   const response = await fetch("https://restcountries.com/v3.1/all")
 
   const countries = await response.json()
-  console.log(countries)
   return countries
 }
 
 function Index() {
   const [countryName, setCountryName] = useState("")
   const [region, setRegion] = useState("")
-  // const [countries, setCountries] = useState([])
   const countries = useLoaderData()
   const [filteredCountries, setFilteredCountries] = useState([...countries])
-
-  /*  useEffect(() => {
-    fetch("https://restcountries.com/v3.1/all")
-      .then((response) => {
-        return response.json()
-      })
-      .then((data) => {
-        setCountries(data)
-        setFilteredCountries(data)
-      })
-  }, []) */
 
   function handleChangeCountryName(event) {
     setCountryName(event.target.value)
@@ -67,17 +55,20 @@ function Index() {
     <>
       <div className="filters">
         <form action="">
-          <div>
+          <div className="input-wrapper">
+            <SearchIcon style={{ width: "20px" }} />
             <input
+              className="search-input"
               value={countryName}
               type="text"
-              placeholder="Search for a country"
+              placeholder="Search for a country..."
               onChange={handleChangeCountryName}
             />
           </div>
 
-          <div>
+          <div className="select-wrapper">
             <select
+              className="select-input"
               name="region"
               value={region}
               id="region"
@@ -109,15 +100,17 @@ function Index() {
               </div>
               <div className="card-body">
                 <h2>{country.name.common}</h2>
-                <ul>
-                  <li>
-                    Population: <span>{country.population}</span>
+                <ul className="country-info">
+                  <li className="contry-info-content-wrapper">
+                    <strong className="country-info-label">Population:</strong>{" "}
+                    <span>{country.population.toLocaleString()}</span>
                   </li>
-                  <li>
-                    Region: <span>{country.region}</span>
+                  <li className="contry-info-content-wrapper">
+                    <strong className="country-info-label">Region:</strong>{" "}
+                    <span>{country.region}</span>
                   </li>
-                  <li>
-                    Capital:{" "}
+                  <li className="contry-info-content-wrapper">
+                    <strong className="country-info-label">Capital: </strong>
                     <span>{country.capital ? country.capital[0] : "N/A"}</span>
                   </li>
                 </ul>

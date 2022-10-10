@@ -26,53 +26,63 @@ function Country() {
         <BackButton />
       </div>
 
-      <div className="country-details-wrapper">
+      <div className="country-details">
         <div className="country-flag-container">
-          <img src={country.flags.svg} alt="" />
+          <img src={country.flags.svg} alt={country.name.common} />
         </div>
 
-        <div className="country-info-wrapper">
+        <div className="country-info-container">
           <h2>{country.name.common}</h2>
-          <div className="country-info">
-            <ul>
-              <li>
-                Native Name:{" "}
-                <span>
-                  {/* {JSON.stringify(country.name.nativeName)}{" "} */}
-                  {/* {JSON.stringify(Object.values(country.name.nativeName))} */}
-                  {/* &nbsp;&nbsp;&nbsp;&nbsp; */}
+          <div className="country-info-wrapper">
+            <ul className="country-info">
+              <li className="country-info-content-wrapper">
+                <strong className="country-info-label">Native Name:</strong>{" "}
+                <span className="country-info-text">
                   {Object.values(country.name.nativeName)[0].official}
                 </span>
               </li>
-              <li>
-                Population: <span>{country.population.toLocaleString()}</span>
+              <li className="country-info-content-wrapper">
+                <strong className="country-info-label">Population:</strong>{" "}
+                <span className="country-info-text">
+                  {country.population.toLocaleString()}
+                </span>
               </li>
-              <li>
-                Region: <span>{country.region}</span>
+              <li className="country-info-content-wrapper">
+                <strong className="country-info-label">Region:</strong>{" "}
+                <span className="country-info-text">{country.region}</span>
               </li>
-              <li>
-                Sub Region: <span>{country.subregion}</span>
+              <li className="country-info-content-wrapper">
+                <strong className="country-info-label">Sub Region:</strong>{" "}
+                <span className="country-info-text">{country.subregion}</span>
               </li>
-              <li>
-                Capital: <span>{country?.capital[0] || "N/A"}</span>
+              <li className="country-info-content-wrapper">
+                <strong className="country-info-label">Capital:</strong>{" "}
+                <span className="country-info-text">
+                  {country?.capital[0] || "N/A"}
+                </span>
               </li>
             </ul>
 
-            <ul>
-              <li>
-                Top Level Domain: <span>{country.tld[0]}</span>
+            <ul className="country-info">
+              <li className="country-info-content-wrapper">
+                <strong className="country-info-label">
+                  Top Level Domain:
+                </strong>{" "}
+                <span className="country-info-text">{country.tld[0]}</span>
               </li>
-              <li>
-                Currencies:{" "}
-                <span>
+
+              <li className="country-info-content-wrapper">
+                <strong className="country-info-label">Currencies:</strong>{" "}
+                <span className="country-info-text">
                   {Object.values(country.currencies).map((currency) => (
                     <span key={currency.name}>{currency.name}</span>
                   ))}
                 </span>
               </li>
-              <li>
-                Languages:{" "}
-                <span>
+
+              <li className="country-info-content-wrapper">
+                <strong className="country-info-label">Languages:</strong>{" "}
+                <span className="country-info-text">
                   {Object.values(country.languages).join(", ")}
                   {/* {Object.values(country.languages).map((language, index) => (
                     <span style={{ "margin-right": "5px" }}>
@@ -88,9 +98,11 @@ function Country() {
           </div>
 
           <div className="country-borders-wrapper">
-            <ul>
-              <li>
-                <span>Border Countries: </span>
+            <ul className="country-info">
+              <li className="country-info-content-wrapper">
+                <strong className="country-info-label">
+                  Border Countries:{" "}
+                </strong>
                 <div className="country-borders">
                   {country.borders?.map((border) => {
                     const countryName = countries.find(
@@ -105,7 +117,7 @@ function Country() {
                         {countryName}
                       </Link>
                     )
-                  }) || <span> No Borders</span>}
+                  }) || <span style={{ marginTop: "4px" }}> No Borders</span>}
                 </div>
               </li>
             </ul>
