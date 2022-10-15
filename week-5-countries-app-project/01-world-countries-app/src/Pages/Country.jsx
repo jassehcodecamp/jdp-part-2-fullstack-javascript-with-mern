@@ -7,15 +7,23 @@ import countries from "../data/countries.json"
 import BackButton from "../Components/BackButton"
 
 // console.log("countries json", countriesJson)
+import { countriesCached } from "../cache/countries"
 
 export async function loader({ params }) {
+  if (countriesCached[params.countryName]) {
+    return countriesCached[params.countryName]
+  }
+
   const response = await fetch(
     "https://restcountries.com/v3.1/name/" + params.countryName
   )
 
-  const country = await response.json()
+  const countryData = await response.json()
 
-  return country[0]
+  const country = countryData[0]
+
+  countriesCached[country.name.common] = country
+  return country
 }
 
 function Country() {

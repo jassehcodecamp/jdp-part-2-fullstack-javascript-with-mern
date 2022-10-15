@@ -189,6 +189,7 @@ select {
 }
 .card-body {
   padding: 1rem 1.5rem;
+  overflow-x: auto;
 }
 .card-body h2 {
   font-size: 1.2rem;

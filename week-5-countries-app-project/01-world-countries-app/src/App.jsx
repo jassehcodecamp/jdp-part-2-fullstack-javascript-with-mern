@@ -1,7 +1,8 @@
 import { Link, Outlet, useNavigation } from "react-router-dom"
 import "./App.css"
-import LoadingSpinner from "./Components/LoadingSpinner"
 import MoonIcon from "./Components/MoonIcon"
+import LoadingUiState from "./Components/LoadingUiState"
+import { useEffect } from "react"
 
 function App() {
   const navigation = useNavigation()
@@ -11,10 +12,21 @@ function App() {
 
     if (currentTheme == "light") {
       root.dataset.theme = "dark"
+      localStorage.setItem("theme", "dark")
     } else {
       root.dataset.theme = "light"
+      localStorage.setItem("theme", "light")
     }
   }
+
+  useEffect(() => {
+    const theme = localStorage.getItem("theme")
+
+    if (theme && ["dark", "light"].includes(theme)) {
+      const root = document.documentElement
+      root.dataset.theme = theme
+    }
+  }, [])
   return (
     <>
       <header>
@@ -32,21 +44,7 @@ function App() {
         </div>
       </header>
       <main>
-        {navigation.state == "loading" ? (
-          <div
-            style={{
-              height: "60vh",
-              width: "100%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <LoadingSpinner width="120px" height="120px" />
-          </div>
-        ) : (
-          <Outlet />
-        )}
+        {navigation.state == "loading" ? <LoadingUiState /> : <Outlet />}
       </main>
       {/* <footer>
         <p>This is our footer</p>

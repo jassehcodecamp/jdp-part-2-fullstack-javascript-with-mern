@@ -1,11 +1,19 @@
 import React, { useState } from "react"
 import { Link, useLoaderData } from "react-router-dom"
 import SearchIcon from "../Components/SearchIcon"
+import CountryCard from "../Components/CountryCard"
+import { countriesCached } from "../cache/countries"
 
 export async function loader() {
+  if (countriesCached.all) {
+    return countriesCached.all
+  }
+
   const response = await fetch("https://restcountries.com/v3.1/all")
 
   const countries = await response.json()
+
+  countriesCached.all = countries
   return countries
 }
 
@@ -86,37 +94,8 @@ function Index() {
       </div>
 
       <div className="countries">
-        {filteredCountries.map((country) => {
-          return (
-            <div className="country-card" key={country.name.common}>
-              <div className="card-header">
-                <Link to={`/countries/${country.name.common}`}>
-                  <img
-                    className="flag"
-                    src={country.flags.png}
-                    alt="The Gambia Flag"
-                  />
-                </Link>
-              </div>
-              <div className="card-body">
-                <h2>{country.name.common}</h2>
-                <ul className="country-info">
-                  <li className="contry-info-content-wrapper">
-                    <strong className="country-info-label">Population:</strong>{" "}
-                    <span>{country.population.toLocaleString()}</span>
-                  </li>
-                  <li className="contry-info-content-wrapper">
-                    <strong className="country-info-label">Region:</strong>{" "}
-                    <span>{country.region}</span>
-                  </li>
-                  <li className="contry-info-content-wrapper">
-                    <strong className="country-info-label">Capital: </strong>
-                    <span>{country.capital ? country.capital[0] : "N/A"}</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          )
+        {filteredCountries.map((country, index) => {
+          return <CountryCard country={country} key={index} />
         })}
       </div>
     </>
