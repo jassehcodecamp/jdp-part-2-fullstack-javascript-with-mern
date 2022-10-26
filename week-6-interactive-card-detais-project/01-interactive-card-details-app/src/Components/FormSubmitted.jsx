@@ -4,7 +4,7 @@ import IconCompleteIcon from "../assets/images/icon-complete.svg"
 import AppButton from "./AppButton"
 const FormSubmitted = ({ setFormState, resetCardDetails }) => {
   return (
-    <div className="w-full max-w-md mx-auto text-center py-2 px-4 mt-8 sm:mt-16 lg:mt-0">
+    <div className="w-full max-w-lg lg:max-w-xl mx-auto text-center py-2 px-4 mt-8 sm:mt-16 lg:mt-0">
       <div>
         <div className="h-[4.5rem] w-[4.5rem] sm:h-20 sm:w-20 lg:h-16 lg:w-16 xl:h-20 xl:w-20 2xl:h-24 2xl:w-24 mx-auto">
           <img src={IconCompleteIcon} className="w-full" alt="Thank you Icon" />
