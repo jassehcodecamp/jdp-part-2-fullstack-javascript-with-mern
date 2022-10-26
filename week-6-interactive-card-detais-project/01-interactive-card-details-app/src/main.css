@@ -10,3 +10,14 @@
     font-weight: 500;
   }
 }
+
+/* 
+focus:border-double focus:border-transparent focus:border-1 focus:[background-image:linear-gradient(white,_white),_linear-gradient(to_right,_hsl(249,_99%,_64%),_hsl(278,_94%,_30%))] focus:[background-clip:padding-box,_border-box
+*/
+.custom-input-style:focus {
+  border: 1px double transparent;
+  background-image: linear-gradient(white, white),
+    linear-gradient(to right, hsl(249, 99%, 64%), hsl(278, 94%, 30%));
+  background-clip: padding-box, border-box;
+  /* background-clip: padding-box, border-box; */
+}
