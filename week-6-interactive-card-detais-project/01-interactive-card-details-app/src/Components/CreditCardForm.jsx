@@ -135,7 +135,7 @@ const CreditCardForm = ({
     // simulate an ajax request time
     setTimeout(() => {
       setFormState("submitted")
-    }, 2500)
+    }, 1500)
   }
 
   return (
