@@ -1,4 +1,5 @@
 import logo from "./assets/images/logo.svg"
+import menuIcon from "./assets/images/icon-menu.svg"
 
 const NAV_ITEMS = ["Home", "New", "Popular", "Trending", "Categories"]
 
@@ -43,11 +44,14 @@ const featuredNews = [
 function App() {
   return (
     <div className="container mx-auto pt-6 pb-20 px-10 xl:px-32 2xl:px-40  ">
-      <header className="flex justify-between items-end py-6">
+      <header className="flex justify-between items-center sm:items-end py-6">
         <div>
           <img src={logo} alt="Logo" />
         </div>
-        <nav>
+        <button className="sm:hidden">
+          <img src={menuIcon} alt="Menu Icon" />
+        </button>
+        <nav class="hidden sm:block">
           <ul className="flex items-center space-x-6 text-gray-500">
             {NAV_ITEMS.map((item) => (
               <li key={item}>
@@ -57,19 +61,19 @@ function App() {
           </ul>
         </nav>
       </header>
-      <main className="mt-10">
-        <div className="grid grid-cols-3 gap-x-10">
-          <div className="col-span-2 grid grid-cols-2 gap-x-8 gap-y-9">
+      <main className="mt-6 sm:mt-10">
+        <div className="grid grid-cols-3 gap-x-10 gap-y-16">
+          <div className="col-span-3 sm:col-span-2 grid grid-cols-2 gap-x-8 gap-y-6 sm:gap-y-9">
             <div className="col-span-2 h-[21.5rem] bg-[url('./assets/images/image-web-3-desktop.jpg')] bg-cover bg-no-repeat bg-center"></div>
 
-            <div>
-              <h1 className="lg:text-4xl xl:text-5xl 2xl:text-[3.5rem] font-extrabold  xl:pr-10 text-primary">
+            <div className="col-span-2 sm:col-span-1">
+              <h1 className="text-4xl xl:text-5xl 2xl:text-[3.5rem] font-extrabold  xl:pr-10 text-primary">
                 The Bright Future of Web 3.0?
               </h1>
             </div>
 
-            <div className="xl:pr-6">
-              <p className="text-secondary-600 text-sm xl:text-base leading-[1.35rem] xl:leading-6">
+            <div className="col-span-2 sm:col-span-1 pr:0 xl:pr-6">
+              <p className="text-secondary-600 text-sm xl:text-base leading-6 sm:leading-[1.35rem] xl:leading-6">
                 We dive into the next evolution of the web that claims to put
                 the power of the platforms back into the hands of the people.
                 But is it really fulfilling its promise?
@@ -83,7 +87,7 @@ function App() {
               </a>
             </div>
           </div>
-          <div className="hero-aside bg-primary py-8 px-7">
+          <div className="hero-aside col-span-3 sm:col-span-1 bg-primary py-8 px-7">
             <h2 className="text-primary-orange text-4xl font-bold">New</h2>
             <div className="mt-7">
               <ul className="space-y-8  divide-[hsl(233,15%,40%)] divide-y">
@@ -102,7 +106,7 @@ function App() {
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-10 mt-24">
+        <div className="sm:grid grid-cols-3 gap-10 mt-24 space-y-6 sm:space-y-0">
           {featuredNews.map((news) => {
             return (
               <div key={news.id} className="flex gap-x-6 items-start">
@@ -114,13 +118,13 @@ function App() {
                   />
                 </div>
                 <div className="w-2/3">
-                  <span className="font-bold text-3xl text-secondary-500">
+                  <span className="font-bold text-2xl sm:text-3xl text-secondary-500">
                     0{news.id}
                   </span>
-                  <h3 className="text-primary text-xl font-bold tracking-tight mt-2">
+                  <h3 className="text-primary text-lg sm:text-xl font-bold tracking-tight mt-1.5 sm:mt-2">
                     {news.title}
                   </h3>
-                  <p className="text-secondary-600 text-sm xl:text-base leading-6 xl:leading-[1.7rem] mt-3">
+                  <p className="text-secondary-600 text-sm xl:text-base leading:5 sm:leading-6 xl:leading-[1.7rem] mt-2.5 sm:mt-3">
                     {news.description}
                   </p>
                 </div>
