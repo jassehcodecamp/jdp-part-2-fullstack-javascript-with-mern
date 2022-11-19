@@ -34,9 +34,11 @@
           {{ address }}
         </td>
         <td>
-          <div>
-            <span>Edit</span>
-            <span>Delete</span>
+          <div class="flex items-center space-x-3">
+            <a href="/contacts/{{id}}/edit">Edit</a>
+            <form action="/contacts/{{id}}?_method=Delete" method="POST">
+             <button >Delete</button> 
+            </form>
           </div>
         </td>
       </tr>
