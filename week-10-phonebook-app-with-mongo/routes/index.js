@@ -3,7 +3,10 @@ var router = express.Router()
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  res.render("index", { title: "JDP Phonebook App With Express" })
+  res.render("index", {
+    title: "JDP Phonebook App With Express",
+    info: req.flash("info"),
+  })
 })
 
 module.exports = router

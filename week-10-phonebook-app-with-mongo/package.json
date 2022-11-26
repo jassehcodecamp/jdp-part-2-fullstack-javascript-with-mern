@@ -8,12 +8,15 @@
     "dev": "concurrently \"nodemon ./bin/www\" \"npx tailwindcss -i ./app.css -o ./public/stylesheets/main.css --watch\""
   },
   "dependencies": {
+    "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "express-session": "^1.17.3",
     "hbs": "^4.2.0",
     "http-errors": "~1.6.3",
     "method-override": "^3.0.0",
+    "mongoose": "^6.7.3",
     "morgan": "~1.9.1",
     "uuid": "^9.0.0"
   },

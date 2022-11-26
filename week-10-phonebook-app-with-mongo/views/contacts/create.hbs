@@ -2,15 +2,14 @@
   <h2 class="uppercase">Create Contact</h2>
   <a href="/contacts" class="btn-primary uppercase">Back</a>
 </div>
-
-  {{#if hasErrors}}
-    <div class="mt-4 py-5 px-4 bg-red-100 text-red-500 rounded text-sm">The Form has Errors!!</div>
-  {{/if}}
 <div>
   
 </div>
 <div class="mt-8">
   <div class="max-w-2xl w-full mx-auto text-gray-500">
+  {{#if hasErrors}}
+    <div class="mt-4 mb-6 py-5 px-4 bg-red-100 text-red-500 rounded text-sm">The Form has Errors!!</div>
+  {{/if}}
   <div class="py-4 px-6 shadow-lg rounded bg-white overflow-hidden w-full">
     <form action="/contacts" method="post">
       <div class="space-y-5">

@@ -1,29 +1,44 @@
 var express = require("express")
 var router = express.Router()
 const { v4: uuid } = require("uuid")
-const { route } = require("../app")
+const mongoose = require("mongoose")
 
-const contacts = [
-  {
-    id: uuid(),
-    name: "Omar Jasseh",
-    phone: "3100948",
-    email: "omar@jassehcodecamp.com",
-    address: "Bakoteh, Sanchaba",
+const ContactSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
   },
-  {
-    id: uuid(),
-    name: "Buba Conteh",
-    phone: "3010451",
-    email: "buba@jassehcodecamp.com",
-    address: "Bundung",
+  phone: {
+    type: String,
+    unique: true,
   },
-]
+  email: {
+    type: String,
+  },
+  address: {
+    type: String,
+    required: false,
+    default: null,
+  },
+
+  createAt: {
+    type: Date,
+    default: Date.now(),
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now(),
+  },
+})
+
+const Contact = mongoose.model("contacts", ContactSchema)
 
 /* GET contacts listing. */
-router.get("/", function (req, res) {
+router.get("/", async function (req, res) {
+  const contacts = await Contact.find()
   res.render("contacts/index", {
-    contacts: contacts,
+    contacts,
+    contactSavedSuccess: req.flash("contact_saved_success"),
   })
 })
 
@@ -40,11 +55,13 @@ router.get("/:id/edit", function (req, res) {
 
 /* GET create contact. */
 router.get("/create", function (req, res) {
-  res.render("contacts/create")
+  res.render("contacts/create", {
+    ...req.flash("errors")[0],
+  })
 })
 
 /* POST: save contact. */
-router.post("/", function (req, res) {
+router.post("/", async function (req, res) {
   const errors = {}
 
   const { name, email, phone, address } = req.body
@@ -67,20 +84,29 @@ router.post("/", function (req, res) {
   }
 
   // check if phone exist
-  if (contacts.find((contact) => contact.phone === phone)) {
+  // if ((await Contact.find({ phone: phone })).length) {
+  if (await Contact.findOne({ phone: phone })) {
     errors.phone = "The phone already exist"
   }
 
   const hasErrors = Boolean(Object.values(errors).length)
 
   if (hasErrors) {
-    res.render("contacts/create", {
+    req.flash("errors", {
       hasErrors,
       errors,
       old: { name, email, phone, address },
     })
+
+    res.redirect("/contacts/create")
   } else {
-    contacts.push({ id: uuid(), name, email, phone, address })
+    const contact = new Contact({ name, email, phone, address })
+    await contact.save()
+
+    req.flash(
+      "contact_saved_success",
+      "The Contact has been successfully saved!"
+    )
     res.redirect("/contacts")
   }
 })
