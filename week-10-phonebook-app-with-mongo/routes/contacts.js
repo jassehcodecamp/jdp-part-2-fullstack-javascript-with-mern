@@ -39,15 +39,16 @@ router.get("/", async function (req, res) {
   res.render("contacts/index", {
     contacts,
     contactSavedSuccess: req.flash("contact_saved_success"),
+    contactUpdated: req.flash("contact_updated"),
+    contactDeleted: req.flash("contact_deleted"),
   })
 })
 
 /* GET contact */
-router.get("/:id/edit", function (req, res) {
+router.get("/:id/edit", async function (req, res) {
   const id = req.params.id
 
-  const contact = contacts.find((contact) => contact.id === id)
-
+  const contact = await Contact.findById(id)
   res.render("contacts/edit", {
     contact,
   })
@@ -112,32 +113,30 @@ router.post("/", async function (req, res) {
 })
 
 /* Update: save contact */
-router.patch("/:id", function (req, res) {
+router.patch("/:id", async function (req, res) {
   const id = req.params.id
 
   const formData = req.body
 
-  const contact = contacts.find((contact) => contact.id === id)
-  const contactIndex = contacts.indexOf(contact)
+  await Contact.updateOne(
+    { _id: id },
+    {
+      name: formData.name,
+      phone: formData.phone,
+      email: formData.email,
+      address: formData.address,
+    }
+  )
 
-  contact.name = formData.name
-  contact.phone = formData.phone
-  contact.email = formData.email
-  contact.address = formData.address
-
-  contacts[contactIndex] = contact
-
+  req.flash("contact_updated", "The Contact has been successfully saved!")
   res.redirect("/contacts")
 })
 
 /* Delete: delete contact */
-router.delete("/:id", function (req, res) {
-  const contactIndex = contacts.findIndex(
-    (contact) => contact.id === req.params.id
-  )
+router.delete("/:id", async function (req, res) {
+  await Contact.findByIdAndDelete(req.params.id)
 
-  contacts.splice(contactIndex, 1)
-
+  req.flash("contact_deleted", "The Contact has been deleted!")
   res.redirect("/contacts")
 })
 
