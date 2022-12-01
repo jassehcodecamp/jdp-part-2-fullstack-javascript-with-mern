@@ -3,9 +3,8 @@
   <a href="/contacts/create" class="py-2.5 px-4 bg-gray-800 text-white uppercase">New Contact</a>
 </div>
 
-{{#if contactSavedSuccess}}
-  <div class="mt-4 mb-6 py-5 px-4 bg-green-100 text-green-700 rounded text-sm">The Contact has been successfully saved!</div>
-  
+{{#if contactCreated}}
+  <div class="mt-4 mb-6 py-5 px-4 bg-green-100 text-green-700 rounded text-sm">{{contactCreated}}</div>
 {{/if}}
 
 {{#if contactUpdated}}

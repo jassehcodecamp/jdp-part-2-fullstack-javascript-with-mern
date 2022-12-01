@@ -38,7 +38,7 @@ router.get("/", async function (req, res) {
   const contacts = await Contact.find()
   res.render("contacts/index", {
     contacts,
-    contactSavedSuccess: req.flash("contact_saved_success"),
+    contactCreated: req.flash("contact_created"),
     contactUpdated: req.flash("contact_updated"),
     contactDeleted: req.flash("contact_deleted"),
   })
@@ -104,10 +104,7 @@ router.post("/", async function (req, res) {
     const contact = new Contact({ name, email, phone, address })
     await contact.save()
 
-    req.flash(
-      "contact_saved_success",
-      "The Contact has been successfully saved!"
-    )
+    req.flash("contact_created", "The Contact has been successfully saved!")
     res.redirect("/contacts")
   }
 })
