@@ -16,10 +16,7 @@ const mongoose = require("mongoose")
 const app = express()
 
 mongoose
-  // .connect("mongodb://localhost:27017/phonebook_app")
-  .connect(
-    "mongodb+srv://jasseh:Tiupdd77pu1xxmat@jasseh.hqxvh.mongodb.net/phonebook?retryWrites=true&w=majority"
-  )
+  .connect("mongodb://localhost:27017/phonebook_app")
   .then(() => {
     console.log("DB connected successfully")
   })
