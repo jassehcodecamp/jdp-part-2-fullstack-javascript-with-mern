@@ -15,6 +15,17 @@
   <div class="mt-4 mb-6 py-5 px-4 bg-red-100 text-red-700 rounded text-sm">{{ contactDeleted }}</div>
 {{/if}}
 
+{{#if confirmDelete}}
+  <div class="mt-4 mb-6 py-5 px-4 bg-red-100 text-red-700 rounded text-sm">{{ confirmDelete }}
+    <div class="flex items-center gap-x-4">
+      <a href="/contacts">No</a>
+       <form action="/contacts/{{contactId}}?_method=Delete" method="POST">
+        <button>Yes Continue</button> 
+      </form>
+    </div>
+  </div>
+{{/if}}
+
 <div class="mt-8">
   <div class="shadow-md rounded-sm overflow-hidden">
   <table class="w-full">
@@ -46,9 +57,10 @@
         <td>
           <div class="flex items-center space-x-3">
             <a href="/contacts/{{id}}/edit">Edit</a>
-            <form action="/contacts/{{id}}?_method=Delete" method="POST">
-             <button >Delete</button> 
-            </form>
+            <a href="/contacts/{{id}}/confirm-delete">
+             Delete 
+            </a>
+           
           </div>
         </td>
       </tr>

@@ -40,6 +40,8 @@ router.get("/", async function (req, res) {
     contacts,
     contactCreated: req.flash("contact_created"),
     contactUpdated: req.flash("contact_updated"),
+    confirmDelete: req.flash("confirm_delete"),
+    contactId: req.flash("contact_id"),
     contactDeleted: req.flash("contact_deleted"),
   })
 })
@@ -130,6 +132,17 @@ router.patch("/:id", async function (req, res) {
 })
 
 /* Delete: delete contact */
+router.get("/:id/confirm-delete", async function (req, res) {
+  const contact = await Contact.findById(req.params.id)
+
+  req.flash(
+    "confirm_delete",
+    `Are you sure you want to delete the contact with name ${contact.name}`
+  )
+  req.flash("contact_id", contact.id)
+  res.redirect("/contacts")
+})
+
 router.delete("/:id", async function (req, res) {
   await Contact.findByIdAndDelete(req.params.id)
 
