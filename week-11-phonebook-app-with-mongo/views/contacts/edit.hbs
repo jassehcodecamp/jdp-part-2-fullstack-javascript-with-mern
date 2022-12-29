@@ -1,0 +1,38 @@
+<div class="flex items-center justify-between">
+  <h2 class="uppercase">Edit Contact</h2>
+  <a href="/contacts" class="btn-primary uppercase">Back</a>
+</div>
+
+
+<div class="mt-8">
+  <div class="max-w-2xl w-full mx-auto text-gray-500">
+  <div class="py-4 px-6 shadow-lg rounded bg-white overflow-hidden w-full">
+    <form action="/contacts/{{contact.id}}?_method=PATCH" method="post">
+      <div class="space-y-5">
+      <div>
+        <label for="name" class="block mb-1">Name</label>
+        <input type="text" name="name" id="name" required value="{{contact.name}}" class="block w-full border border-gray-400 rounded leading-7">
+      </div>
+      <div>
+        <label for="phone" class="block mb-1">Phone</label>
+        <input type="text" value="{{contact.phone}}" name="phone" id="phone" required class="block w-full border border-gray-400 rounded leading-7">
+      </div>
+      <div>
+        <label for="email" class="block mb-1">Email</label>
+        <input type="email" value="{{contact.email}}" name="email" id="email" required class="block w-full border border-gray-400 rounded leading-7">
+      </div>
+      <div>
+        <label for="address" class="block mb-1">Address</label>
+        <textarea  name="address" id="address" required rows="2" cols="10" class="block w-full border border-gray-400 rounded leading-7">{{contact.address}}</textarea>
+      </div>
+      </div>
+
+      <div class="py-3 flex justify-end items-center space-x-4 mt-8">
+        <button class="py-2.5 px-5 rounded bg-gray-100 text-gray-600 font-semibold">Reset</button>
+        <button class="btn-primary font-semibold">Save</button>
+      </div>
+    </form>
+    </div>
+  </div>
+
+</div>
