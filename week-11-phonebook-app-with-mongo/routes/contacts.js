@@ -34,7 +34,9 @@ const Contact = mongoose.model("contacts", ContactSchema)
 
 /* GET contacts listing. */
 router.get("/", async function (req, res) {
+  
   const contacts = await Contact.find()
+ 
   res.render("contacts/index", {
     contacts,
     contactCreated: req.flash("contact_created"),
@@ -102,7 +104,7 @@ router.post("/", async function (req, res) {
 
     res.redirect("/contacts/create")
   } else {
-    const contact = new Contact({ name, email, phone, address })
+    const contact = new Contact({ name, email, phone, address, userId: req.user.id })
     await contact.save()
 
     req.flash("contact_created", "The Contact has been successfully saved!")

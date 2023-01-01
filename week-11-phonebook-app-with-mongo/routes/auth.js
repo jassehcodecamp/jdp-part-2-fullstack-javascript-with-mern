@@ -6,29 +6,36 @@ var LocalStrategy = require("passport-local")
 var md5 = require("md5")
 const User = require('../models/User');
 
+async function verify(email, password, cb) {
+  console.log("coming here")
+  const user = await User.findOne({ email: email })
+
+  if (!user) {
+    console.log("Invalid email")
+    return cb(null, false, { message: "Incorrect email or password." })
+  }
+
+  console.log("Passing here")
+  if (user.password !== md5(password)) {
+    return cb(null, false, { message: "Incorrect email or password." })
+  }
+  console.log("authenticated successfully")
+  return cb(null, user)
+}
+
+
 passport.use(
-  new LocalStrategy(async function verify(username, password, cb) {
-    console.log('coming here')
-    const user = await User.findOne({ email: username });
-
-    if (!user) {
-      console.log("Invalid email")
-      return cb(null, false, { message: "Incorrect username or password." });
-    }
-
-    console.log("Passing here")
-    if (user.password !== md5(password)) {
-      return cb(null, false, { message: "Incorrect username or password." })
-    }
-    console.log('authenticated successfully');
-    return cb(null, user);
-    
-  })
+  new LocalStrategy(
+    {
+      usernameField: "email",
+    },
+    verify
+  )
 )
 
 passport.serializeUser(function (user, cb) {
   process.nextTick(function () {
-    cb(null, { id: user.id, username: user.email })
+    cb(null, { id: user.id, email: user.email })
   })
 })
 
@@ -51,6 +58,16 @@ router.post("/login", passport.authenticate("local", {
     failureMessage: true,
 })
 )
+
+router.post("/logout", function (req, res, next) {
+  req.logout(function (err) {
+    if (err) {
+      return next(err)
+    }
+    res.redirect("/login")
+  })
+})
+
 
 
 module.exports = router

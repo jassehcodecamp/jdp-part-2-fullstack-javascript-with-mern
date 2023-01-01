@@ -45,15 +45,21 @@ app.use(methodOverride("_method"))
 app.use(
   session({
     secret: "my secret",
-    resave: true,
-    saveUninitialized: true,
+    resave: false,
+    saveUninitialized: false,
     // store: new SQLiteStore({ db: "sessions.db", dir: "./var/db" }),
   })
 )
 app.use(passport.authenticate("session"))
 app.use(flash())
 
+app.use((req, res, next) => {
+  res.locals.user = req.user;
+  next();
+})
 app.use("/", indexRouter)
+
+
 app.use("/", authRouter)
 app.use("/users", usersRouter)
 app.use("/contacts", contactsRouter)
@@ -66,7 +72,8 @@ app.get("/test-flash", function (req, res) {
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  next(createError(404))
+  // next(createError(404));
+  res.render('404');
 })
 
 // error handler
