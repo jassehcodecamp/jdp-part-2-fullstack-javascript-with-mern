@@ -1,8 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 
-/*
-! tailwindcss v3.2.4 | MIT License | https://tailwindcss.com
-*/
+/* @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"); */
+
+/* ! tailwindcss v3.2.4 | MIT License | https://tailwindcss.com */
 
 /*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
@@ -588,7 +588,7 @@ select{
 }
 
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 *, ::before, ::after{
@@ -685,25 +685,68 @@ body {
   --tw-backdrop-sepia:  ;
 }
 
+.container{
+  width: 100%;
+}
+
+@media (min-width: 640px){
+  .container{
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px){
+  .container{
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px){
+  .container{
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px){
+  .container{
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px){
+  .container{
+    max-width: 1536px;
+  }
+}
+
+.-mx-8{
+  margin-left: -2rem;
+  margin-right: -2rem;
+}
+
 .mx-auto{
   margin-left: auto;
   margin-right: auto;
 }
 
-.mt-8{
-  margin-top: 2rem;
+.mt-10{
+  margin-top: 2.5rem;
 }
 
 .mb-4{
   margin-bottom: 1rem;
 }
 
+.ml-auto{
+  margin-left: auto;
+}
+
 .mt-4{
   margin-top: 1rem;
 }
 
-.mb-px{
-  margin-bottom: 1px;
+.mt-8{
+  margin-top: 2rem;
 }
 
 .mb-6{
@@ -718,8 +761,8 @@ body {
   margin-top: 0.25rem;
 }
 
-.ml-auto{
-  margin-left: auto;
+.mb-px{
+  margin-bottom: 1px;
 }
 
 .block{
@@ -732,6 +775,10 @@ body {
 
 .table{
   display: table;
+}
+
+.h-16{
+  height: 4rem;
 }
 
 .min-h-screen{
@@ -775,16 +822,22 @@ body {
        column-gap: 1rem;
 }
 
-.space-y-6 > :not([hidden]) ~ :not([hidden]){
+.space-y-8 > :not([hidden]) ~ :not([hidden]){
   --tw-space-y-reverse: 0;
-  margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
+  margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(2rem * var(--tw-space-y-reverse));
 }
 
 .space-y-5 > :not([hidden]) ~ :not([hidden]){
   --tw-space-y-reverse: 0;
   margin-top: calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1.25rem * var(--tw-space-y-reverse));
+}
+
+.space-y-4 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
 }
 
 .space-x-4 > :not([hidden]) ~ :not([hidden]){
@@ -799,10 +852,15 @@ body {
   margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
-.space-y-4 > :not([hidden]) ~ :not([hidden]){
-  --tw-space-y-reverse: 0;
-  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+.divide-y > :not([hidden]) ~ :not([hidden]){
+  --tw-divide-y-reverse: 0;
+  border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
+  border-bottom-width: calc(1px * var(--tw-divide-y-reverse));
+}
+
+.divide-gray-200 > :not([hidden]) ~ :not([hidden]){
+  --tw-divide-opacity: 1;
+  border-color: rgb(229 231 235 / var(--tw-divide-opacity));
 }
 
 .overflow-hidden{
@@ -813,12 +871,20 @@ body {
   border-radius: 0.25rem;
 }
 
+.rounded-lg{
+  border-radius: 0.5rem;
+}
+
 .rounded-sm{
   border-radius: 0.125rem;
 }
 
 .border{
   border-width: 1px;
+}
+
+.border-b{
+  border-bottom-width: 1px;
 }
 
 .border-gray-400{
@@ -831,20 +897,19 @@ body {
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
 }
 
-.border-x-gray-400{
-  --tw-border-opacity: 1;
-  border-left-color: rgb(156 163 175 / var(--tw-border-opacity));
-  border-right-color: rgb(156 163 175 / var(--tw-border-opacity));
-}
-
 .bg-gray-50{
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
 }
 
-.bg-gray-900{
+.bg-sky-700{
   --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+  background-color: rgb(3 105 161 / var(--tw-bg-opacity));
+}
+
+.bg-sky-800{
+  --tw-bg-opacity: 1;
+  background-color: rgb(7 89 133 / var(--tw-bg-opacity));
 }
 
 .bg-white{
@@ -862,11 +927,6 @@ body {
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
 
-.bg-gray-800{
-  --tw-bg-opacity: 1;
-  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
-}
-
 .bg-green-100{
   --tw-bg-opacity: 1;
   background-color: rgb(220 252 231 / var(--tw-bg-opacity));
@@ -877,9 +937,9 @@ body {
   background-color: rgb(219 234 254 / var(--tw-bg-opacity));
 }
 
-.py-6{
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
+.bg-gray-800{
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
 }
 
 .px-8{
@@ -887,14 +947,14 @@ body {
   padding-right: 2rem;
 }
 
-.py-4{
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
 .py-8{
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.py-4{
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .px-6{
@@ -932,6 +992,15 @@ body {
   padding-bottom: 0.5rem;
 }
 
+.py-3\.5{
+  padding-top: 0.875rem;
+  padding-bottom: 0.875rem;
+}
+
+.pb-6{
+  padding-bottom: 1.5rem;
+}
+
 .text-left{
   text-align: left;
 }
@@ -940,9 +1009,9 @@ body {
   text-align: center;
 }
 
-.text-base{
-  font-size: 1rem;
-  line-height: 1.5rem;
+.text-lg{
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }
 
 .text-3xl{
@@ -955,16 +1024,16 @@ body {
   line-height: 1.25rem;
 }
 
+.font-bold{
+  font-weight: 700;
+}
+
 .font-semibold{
   font-weight: 600;
 }
 
 .font-medium{
   font-weight: 500;
-}
-
-.font-bold{
-  font-weight: 700;
 }
 
 .uppercase{
@@ -984,14 +1053,14 @@ body {
   color: rgb(243 244 246 / var(--tw-text-opacity));
 }
 
-.text-gray-500{
-  --tw-text-opacity: 1;
-  color: rgb(107 114 128 / var(--tw-text-opacity));
-}
-
 .text-gray-600{
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity));
+}
+
+.text-gray-500{
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
 }
 
 .text-red-500{
@@ -1024,6 +1093,16 @@ body {
   color: rgb(185 28 28 / var(--tw-text-opacity));
 }
 
+.text-gray-800{
+  --tw-text-opacity: 1;
+  color: rgb(31 41 55 / var(--tw-text-opacity));
+}
+
+.text-blue-500{
+  --tw-text-opacity: 1;
+  color: rgb(59 130 246 / var(--tw-text-opacity));
+}
+
 .shadow-sm{
   --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
@@ -1051,7 +1130,7 @@ body {
 .btn-primary{
   border-radius: 0.25rem;
   --tw-bg-opacity: 1;
-  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+  background-color: rgb(3 105 161 / var(--tw-bg-opacity));
   padding-top: 0.625rem;
   padding-bottom: 0.625rem;
   padding-left: 1.25rem;

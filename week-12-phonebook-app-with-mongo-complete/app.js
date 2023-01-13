@@ -7,8 +7,7 @@ const flash = require("connect-flash")
 const session = require("express-session")
 const Handlebars = require("hbs")
 const passport = require("passport");
-
-// var SQLiteStore = require("connect-sqlite3")(session)
+const mustBeAuthenitcated = require("./middlewares/authenticated")
 
 
 const authRouter = require("./routes/auth")
@@ -45,7 +44,7 @@ app.use(methodOverride("_method"))
 app.use(
   session({
     secret: "my secret",
-    resave: false,
+    resave: true,
     saveUninitialized: false,
     // store: new SQLiteStore({ db: "sessions.db", dir: "./var/db" }),
   })
@@ -62,7 +61,7 @@ app.use("/", indexRouter)
 
 app.use("/", authRouter)
 app.use("/users", usersRouter)
-app.use("/contacts", contactsRouter)
+app.use("/contacts", mustBeAuthenitcated, contactsRouter)
 
 app.get("/test-flash", function (req, res) {
   // Set a flash message by passing the key, followed by the value, to req.flash().

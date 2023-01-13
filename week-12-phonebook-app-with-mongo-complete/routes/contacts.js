@@ -1,42 +1,26 @@
-var express = require("express")
-var router = express.Router()
+const express = require("express")
+const router = express.Router()
 const mongoose = require("mongoose")
+const ContactSchema = require('../models/Contact');
+const User = require('../models/User');
 
-const ContactSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  phone: {
-    type: String,
-    unique: true,
-  },
-  email: {
-    type: String,
-  },
-  address: {
-    type: String,
-    required: false,
-    default: null,
-  },
+const Contact = mongoose.model("contacts", ContactSchema);
 
-  createAt: {
-    type: Date,
-    default: Date.now(),
-  },
-  updatedAt: {
-    type: Date,
-    default: Date.now(),
-  },
-})
-
-const Contact = mongoose.model("contacts", ContactSchema)
 
 /* GET contacts listing. */
 router.get("/", async function (req, res) {
+
+  // const contacts = await Contact.find()
+  const authUser = await User.findById(req.user.id);
+
+  let contacts = [];
+
+  if (authUser.role === 'admin') {
+    contacts = (await User.find()).flatMap(user => user.contacts);
+  } else {
+    contacts = (await User.findById(req.user.id)).contacts
+  }
   
-  const contacts = await Contact.find()
- 
   res.render("contacts/index", {
     contacts,
     contactCreated: req.flash("contact_created"),
@@ -68,6 +52,8 @@ router.get("/create", function (req, res) {
 router.post("/", async function (req, res) {
   const errors = {}
 
+  const user = await User.findById(req.user.id);
+
   const { name, email, phone, address } = req.body
 
   // form validation starts here
@@ -89,7 +75,7 @@ router.post("/", async function (req, res) {
 
   // check if phone exist
   // if ((await Contact.find({ phone: phone })).length) {
-  if (await Contact.findOne({ phone: phone })) {
+  if (user.contacts.find((contact) => contact.phone ===phone )) {
     errors.phone = "The phone already exist"
   }
 
@@ -105,7 +91,9 @@ router.post("/", async function (req, res) {
     res.redirect("/contacts/create")
   } else {
     const contact = new Contact({ name, email, phone, address, userId: req.user.id })
-    await contact.save()
+    user.contacts.push(contact);
+
+    await user.save();
 
     req.flash("contact_created", "The Contact has been successfully saved!")
     res.redirect("/contacts")

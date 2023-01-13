@@ -89,19 +89,19 @@ router.post("/register", async function (req, res, next) {
   const { name, email, password, confirmPassword } = req.body
 
   // form validation starts here
-  if (!name.trim()) {
+  if (!name) {
     errors.name = "The name is required"
   }
 
-  if (!email.trim()) {
+  if (!email) {
     errors.email = "The email is required"
   }
 
-  if (!password.trim()) {
+  if (!password) {
     errors.password = "The password is required"
   }
 
-  if (!confirmPassword.trim()) {
+  if (!confirmPassword) {
     errors.confirmPassword = "The confirm password is required"
   }
 

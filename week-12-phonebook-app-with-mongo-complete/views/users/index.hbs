@@ -1,6 +1,6 @@
 <div class="flex items-center justify-between">
-  <h2 class="uppercase">All Contacts</h2>
-  <a href="/contacts/create" class="py-2.5 px-4 bg-sky-700 text-white uppercase rounded">New Contact</a>
+  <h2 class="uppercase">All Users</h2>
+  <a href="/contacts/create" class="py-2.5 px-4 bg-gray-800 text-white uppercase rounded">New Contact</a>
   
 </div>
 
@@ -28,37 +28,34 @@
 {{/if}}
 
 <div class="mt-8 bg-white">
-  <div class="shadow-md rounded-lg overflow-hidden">
+  <div class="shadow-md rounded-sm overflow-hidden">
   <table class="w-full">
-    <thead class="uppercase text-sm font-medium text-gray-800 bg-gray-100">
+    <thead class="uppercase text-sm font-medium text-gray-500">
       <tr>
-        <td class="py-3.5 px-4 border-b">Name</td>
-        <td class="py-3.5 px-4 border-b">Phone</td>
-        <td class="py-3.5 px-4 border-b">Email</td>
-        <td class="py-3.5 px-4 border-b">Address</td>
-        <td class="py-3.5 px-4 border-b">Actions</td>
+        <td class="py-2.5 px-4">Name</td>
+        <td class="py-2.5 px-4">Email</td>
+        <td class="py-2.5 px-4">Role</td>
+        <td class="py-2.5 px-4">Actions</td>
       </tr>
     </thead>
 
-    <tbody class="text-gray-500 divide-y divide-gray-200 bg-white">
-      {{#each contacts}}
+    <tbody class="text-gray-600">
+      {{#each users}}
       <tr>
-        <td class="py-4 px-4">
+        <td class="py-2.5 px-4">
           {{ name }}
         </td>
-        <td class="py-4 px-4">
-          {{ phone }}
-        </td>
-        <td class="py-4 px-4">
+        <td class="py-2.5 px-4">
           {{ email }}
         </td>
-        <td class="py-4 px-4">
-          {{ address }}
+        <td class="py-2.5 px-4">
+          Admin
         </td>
-        <td class="py-4 px-4">
+       
+        <td>
           <div class="flex items-center space-x-3">
-            <a href="/contacts/{{id}}/edit" class="text-blue-500">Edit</a>
-            <a href="/contacts/{{id}}/confirm-delete" class="text-red-500">
+            <a href="/users/{{id}}/edit">Edit</a>
+            <a href="/users/{{id}}/confirm-delete">
              Delete 
             </a>
            
