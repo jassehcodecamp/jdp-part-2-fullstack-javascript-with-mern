@@ -1,0 +1,38 @@
+<div class="max-w-md mx-auto ">
+    
+  <h1 class="text-center text-3xl text-gray-600 font-semibold">Create New Account</h1>
+  {{#if hasErrors}}
+     {{> errorAlert message="The form has errors!"}}
+  {{/if}}
+<div class="mt-4 py-4 px-6 bg-white rounded shadow">
+  <form action="/register" method="POST" class="w-full">
+  <div class="space-y-4">
+    <div>
+      {{> label for="name" text="Name" }}
+      {{> input name="name" type="text" id="name" value=old.name }}
+      {{> inputError message=errors.name}}
+    </div>
+    <div>
+      {{> label for="email" text="Email" }}
+      {{> input name="email" type="email" id="email"  value=old.email }}
+      {{> inputError message=errors.email}}
+    </div>
+    <div>
+      {{> label for="password" text="Password" }}
+      {{> input name="password" type="password" id="password"  value=old.password }}
+      {{> inputError message=errors.password }}
+    </div>
+    
+    <div>
+      {{> label for="confirm-password" text="Confirm Password" }}
+      {{> input name="confirmPassword" type="password" id="confirm-password"  value=old.confirmPassword }}
+      {{> inputError message=errors.confirmPassword }}
+    </div>
+  </div>
+
+    <div class="mt-8">
+       {{> button type="submit" text="Sign Up" }}
+    </div>
+  </form>
+</div>
+</div>

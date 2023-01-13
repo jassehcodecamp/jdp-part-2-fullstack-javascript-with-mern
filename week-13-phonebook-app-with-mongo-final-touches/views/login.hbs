@@ -1,0 +1,25 @@
+
+<div class="max-w-md mx-auto ">
+  <h1 class="text-center text-3xl text-gray-600 font-semibold">Sign In</h1>
+<div class="mt-4 py-4 px-6 bg-white rounded shadow">
+  
+  <form action="/login" method="POST">
+  <div class="space-y-5">
+ 
+    <div>
+      {{> label for="email" text="Email Address" }}
+      {{> input name="email" type="email" id="email"}}
+    </div>
+ 
+    <div>
+      {{> label for="password" text="Password" }}
+      {{> input name="password" type="password" id="password"}}
+    </div>
+  </div>
+
+    <div class="mt-8">
+       {{> button type="submit" text="Sign In"}}
+    </div>
+  </form>
+</div>
+</div>

@@ -1,0 +1,72 @@
+<div class="flex items-center justify-between">
+  <h2 class="uppercase">All Contacts</h2>
+  <a href="/contacts/create" class="py-2.5 px-4 bg-sky-700 text-white uppercase rounded">New Contact</a>
+  
+</div>
+
+{{#if contactCreated}}
+  <div class="mt-4 mb-6 py-5 px-4 bg-green-100 text-green-700 rounded text-sm">{{contactCreated}}</div>
+{{/if}}
+
+{{#if contactUpdated}}
+  <div class="mt-4 mb-6 py-5 px-4 bg-blue-100 text-blue-700 rounded text-sm">{{ contactUpdated }}</div>
+{{/if}}
+
+{{#if contactDeleted}}
+  <div class="mt-4 mb-6 py-5 px-4 bg-red-100 text-red-700 rounded text-sm">{{ contactDeleted }}</div>
+{{/if}}
+
+{{#if confirmDelete}}
+  <div class="mt-4 mb-6 py-5 px-4 bg-red-100 text-red-700 rounded text-sm">{{ confirmDelete }}
+    <div class="flex items-center gap-x-4">
+      <a href="/contacts">No</a>
+       <form action="/contacts/{{contactId}}?_method=Delete" method="POST">
+        <button>Yes Continue</button> 
+      </form>
+    </div>
+  </div>
+{{/if}}
+
+<div class="mt-8 bg-white">
+  <div class="shadow-md rounded-lg overflow-hidden">
+  <table class="w-full">
+    <thead class="uppercase text-sm font-medium text-gray-800 bg-gray-100">
+      <tr>
+        <td class="py-3.5 px-4 border-b">Name</td>
+        <td class="py-3.5 px-4 border-b">Phone</td>
+        <td class="py-3.5 px-4 border-b">Email</td>
+        <td class="py-3.5 px-4 border-b">Address</td>
+        <td class="py-3.5 px-4 border-b">Actions</td>
+      </tr>
+    </thead>
+
+    <tbody class="text-gray-500 divide-y divide-gray-200 bg-white">
+      {{#each contacts}}
+      <tr>
+        <td class="py-4 px-4">
+          {{ name }}
+        </td>
+        <td class="py-4 px-4">
+          {{ phone }}
+        </td>
+        <td class="py-4 px-4">
+          {{ email }}
+        </td>
+        <td class="py-4 px-4">
+          {{ address }}
+        </td>
+        <td class="py-4 px-4">
+          <div class="flex items-center space-x-3">
+            <a href="/contacts/{{id}}/edit" class="text-blue-500">Edit</a>
+            <a href="/contacts/{{id}}/confirm-delete" class="text-red-500">
+             Delete 
+            </a>
+           
+          </div>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  </div>
+</div>

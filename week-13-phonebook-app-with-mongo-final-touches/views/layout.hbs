@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+    <link rel='stylesheet' href='/stylesheets/main.css' />
+  </head>
+  <body class="min-h-screen flex bg-gray-50">
+    {{#if user}}
+    <aside class="w-64 bg-sky-700 text-center pb-6 px-8 text-gray-100">
+      <div class="h-16  bg-sky-800  flex items-center -mx-8 px-8">
+        <h1 class="uppercase text-lg text-gray-100 font-bold">
+        <a href="/">Phonebook App</a></h1>
+      </div>
+
+        <nav class="mt-10 text-left">
+          <ul class="space-y-8">
+            <li>
+              <a href="/dashboard">Dashboard</a>
+            </li>
+            
+            <li>
+              <a href="/contacts">Contacts</a>
+            </li>
+            
+            <li>
+              <a href="/users">Users</a>
+            </li>
+          </ul>
+        </nav>
+    </aside>
+    {{/if}}
+    <main class="flex-1">
+      <div class="px-8 flex items-center h-16 mb-4 bg-white shadow-sm">
+        {{#if user}}
+        {{else}}
+        <div>
+          <h1 class="text-3xl font-bold text-gray-600 uppercase">Phonebook App</h1>
+        </div>
+        {{/if}}
+        <div class="ml-auto">
+          <ul class="flex items-center gap-x-4 text-gray-500">
+            {{#if user}}
+              <li>
+                <span class="capitalize text-gray-600">{{ user.name }}</span>
+              </li>
+              <li>
+                <form action="/logout" method="post">
+                  <button>Logout</button>
+                </form>
+              </li>
+           {{else}}
+            <li>
+              <a href="/register">Sign Up</a>
+            </li>
+            <li>
+              <a href="/login">Sign In</a>
+            </li>
+          {{/if}}
+          </ul>
+        </div>
+      </div>
+      <div class="py-8 px-8 container mx-auto">
+      {{{body}}}
+      </div>
+    </main>
+
+  </body>
+</html>
