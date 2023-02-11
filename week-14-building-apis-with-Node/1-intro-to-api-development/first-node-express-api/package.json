@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "start": "nodemon app.js" 
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
