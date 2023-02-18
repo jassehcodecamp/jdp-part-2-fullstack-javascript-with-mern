@@ -24,7 +24,7 @@ const contacts = [
 
 
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to the Express API" })
+  res.json({ message: "Welcome to the Phonebook API" })
 })
 
 // Get all Contacts
